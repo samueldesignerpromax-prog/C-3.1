@@ -1,3 +1,14 @@
+using System;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Hosting;
+
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+// Porta do Render
+var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
+app.Urls.Add($"http://0.0.0.0:{port}");
+
 app.MapGet("/", () => @"
 <!DOCTYPE html>
 <html>
@@ -20,45 +31,19 @@ app.MapGet("/", () => @"
             background: rgba(0,0,0,0.3);
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
         }
 
         h1 {
             font-size: 42px;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 20px;
-            opacity: 0.9;
-        }
-
-        button {
-            margin-top: 25px;
-            padding: 12px 25px;
-            font-size: 18px;
-            border: none;
-            border-radius: 10px;
-            background: #ffffff;
-            color: black;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        button:hover {
-            transform: scale(1.1);
-            background: #e2e8f0;
         }
     </style>
 </head>
 <body>
     <div class='box'>
         <h1>🚀 Esse é meu primeiro programa em C#</h1>
-        <p>Rodando na web com estilo 😎</p>
-        <button onclick='alert(""Você clicou! Tá funcionando 🔥"")'>
-            Testar
-        </button>
     </div>
 </body>
 </html>
 ");
+
+app.Run();
