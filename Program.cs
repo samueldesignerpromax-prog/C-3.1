@@ -5,11 +5,10 @@ using Microsoft.Extensions.Hosting;
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-// Porta do Render
 var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
 app.Urls.Add($"http://0.0.0.0:{port}");
 
-app.MapGet("/", () => @"
+app.MapGet("/", () => Results.Content(@"
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,6 +43,6 @@ app.MapGet("/", () => @"
     </div>
 </body>
 </html>
-");
+", "text/html"));
 
 app.Run();
