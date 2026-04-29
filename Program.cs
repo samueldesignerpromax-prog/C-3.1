@@ -1,14 +1,4 @@
-using System;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Hosting;
-
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
-
-var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
-app.Urls.Add($"http://0.0.0.0:{port}");
-
-app.MapGet("/", () => Results.Content(@"
+app.MapGet("/", () => @"
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,29 +10,29 @@ app.MapGet("/", () => Results.Content(@"
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #4f46e5, #06b6d4, #22c55e);
+            background: linear-gradient(135deg, #000000, #1e3a8a, #9333ea);
             font-family: Arial;
             color: white;
         }
 
-        .box {
+        h1 {
+            font-size: 80px; /* 🔥 BEM GRANDE */
             text-align: center;
-            background: rgba(0,0,0,0.3);
-            padding: 40px;
-            border-radius: 20px;
+            background: linear-gradient(90deg, #22c55e, #06b6d4, #facc15);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 2s infinite;
         }
 
-        h1 {
-            font-size: 42px;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
     </style>
 </head>
 <body>
-    <div class='box'>
-        <h1>🚀 Esse é meu primeiro programa em C#</h1>
-    </div>
+    <h1>🚀 ESSE É MEU PRIMEIRO PROGRAMA EM C# 🚀</h1>
 </body>
 </html>
-", "text/html"));
-
-app.Run();
+");
