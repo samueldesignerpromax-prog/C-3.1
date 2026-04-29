@@ -1,18 +1,8 @@
-using System;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Hosting;
-
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
-
-var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
-app.Urls.Add($"http://0.0.0.0:{port}");
-
 app.MapGet("/", () => @"
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Meu Site Profissional</title>
+    <title>Meu Primeiro Programa</title>
     <style>
         body {
             margin: 0;
@@ -20,34 +10,55 @@ app.MapGet("/", () => @"
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: white;
+            background: linear-gradient(135deg, #4f46e5, #06b6d4, #22c55e);
             font-family: Arial;
+            color: white;
         }
+
         .box {
             text-align: center;
+            background: rgba(0,0,0,0.3);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
         }
+
         h1 {
-            font-size: 40px;
-            color: #38bdf8;
+            font-size: 42px;
+            margin-bottom: 20px;
         }
+
+        p {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+
         button {
-            margin-top: 20px;
-            padding: 10px 20px;
+            margin-top: 25px;
+            padding: 12px 25px;
+            font-size: 18px;
             border: none;
-            background: #38bdf8;
+            border-radius: 10px;
+            background: #ffffff;
+            color: black;
             cursor: pointer;
-            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background: #e2e8f0;
         }
     </style>
 </head>
 <body>
     <div class='box'>
-        <h1>Meu primeiro site em C# 🚀</h1>
-        <button onclick='alert(""Funcionando!"")'>Clique aqui</button>
+        <h1>🚀 Esse é meu primeiro programa em C#</h1>
+        <p>Rodando na web com estilo 😎</p>
+        <button onclick='alert(""Você clicou! Tá funcionando 🔥"")'>
+            Testar
+        </button>
     </div>
 </body>
 </html>
 ");
-
-app.Run();
